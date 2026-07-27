@@ -16,36 +16,46 @@ The distance data is collected from the sensor via I2C at 100kbps and then trans
 
 ![Characteristic Table](Images/charTable.png)
 
+*Characteristic Table*
+
 --------------------------------
 
 ## Functionality:
 
 ### Firmware (MCU):
 
-Initialises the system clock and sensor, then pulls onboard buttons to begin or end scanning. The stepper motor is rotated 360deg incrementially, with the ToF sensor taking the average of 5 distance measurements (between motor rotation increments). The MCU transmits the required data in CSV format to the PC via UART. A flowchart is shown below, since ***the full MCU firmware source code is not publicly displayed to avoid infringement of academic integrety policies.***
+Initialises the system clock and sensor, then pulls onboard buttons to begin or end scanning. The stepper motor is rotated 360deg incrementally, with the ToF sensor taking the average of 5 distance measurements (between motor rotation increments). The MCU transmits the required data in CSV format to the PC via UART. A flowchart is shown below, since ***the full MCU firmware source code is not publicly displayed to avoid infringement of academic integrity policies.***
 
 ![C program flowchart](Images/mainCFlow.png)
+
+*C program flowchart*
 
 
 ### Python Visualization (PC):
 
-The Python program [(Python Program Link)](Python_Visualization/Graphing.py) reads the incoming UART stream using Python's Serial library, and parses it into (spliceNum, angle, distance), to convert them into cartesian coordinates. The anomaly readings are flagged, and a live 3D scatter plot is built. Combining all splices together,the result is multiple scans being joined together, creating a 3D model of the room using Python's Matplotlib library. Below is a flowchart of the program.
+The Python program [(Python Program Link)](Python_Visualization/Graphing.py) reads the incoming UART stream using Python's Serial library, and parses it into (xDisplacement, angle, distance), to convert them into cartesian coordinates. The anomaly readings are flagged, and a live 3D scatter plot is built. Combining all slices together,the result is multiple scans being joined together, creating a 3D model of the room using Python's Matplotlib library. Below is a flowchart of the program.
 
 ![Py program flowchart](Images/PyFlow.png)
 
+*Python program flowchart*
+
 --------------------------------
 
-## Hardware Schematic:
+## Hardware Schematics:
 
 ![System schematic](Images/systemScheme.png)
 
+*System schematic*
+
 ![Block Diagram](Images/BlockDiagram.png)
+
+*Block Diagram*
 
 The schematic and block diagram above show how the hardware was connected and communicated with each other.
 
-    - The VL53L1X ToF sensor waas connected to the MCU, over I2C.
+    - The VL53L1X ToF sensor was connected to the MCU, over I2C.
 
-    - The stepper motor and its driver (ULN2003) waas connected to the MCU via GPIO pins.
+    - The stepper motor and its driver (ULN2003) was connected to the MCU via GPIO pins.
 
     - The Onboard buttons were connected by internal GPIO.
 
@@ -59,8 +69,15 @@ Below are the results of the system scanning the shown hallway
 
 ![Hallway](Scan_Results/room.png)
 
+*Picture of the hallway scanned*
+
 ![Front view](Scan_Results/frontView.png)
+
+*Front view of the 3D model*
 
 ![Top view](Scan_Results/topView.png)
 
-The blue points are valid readings, along with lines connecting the points and splices to provide a visually-pleasing model. The red points represent anomaly readings, correctly showing that the scanned hallway is met with another perpendicular hallway which the sensor could not read properly.
+*Top view of the 3D model*
+
+
+The blue points are valid readings, along with lines connecting the points and slices to provide a visually-pleasing model. The red points represent anomaly readings, correctly showing that the scanned hallway is met with another perpendicular hallway which the sensor could not read properly.
