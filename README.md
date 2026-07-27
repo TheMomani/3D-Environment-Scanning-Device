@@ -29,7 +29,7 @@ Initialises the system clock and sensor, then pulls onboard buttons to begin or 
 
 ### Python Visualization (PC):
 
-The Python program [Link to Py Program](Python Visualization/Graphing.py) reads the incoming UART stream using Python's Serial library, and parses it into (spliceNum, angle, distance), to convert them into cartesian coordinates. The anomaly readings are flagged, and a live 3D scatter plot is built. Combining all splices together,the result is multiple scans being joined together, creating a 3D model of the room using Python's Matplotlib library. Below is a flowchart of the program.
+The Python program [(Python Program Link)](Python_Visualization/Graphing.py) reads the incoming UART stream using Python's Serial library, and parses it into (spliceNum, angle, distance), to convert them into cartesian coordinates. The anomaly readings are flagged, and a live 3D scatter plot is built. Combining all splices together,the result is multiple scans being joined together, creating a 3D model of the room using Python's Matplotlib library. Below is a flowchart of the program.
 
 ![Py program flowchart](Images/PyFlow.png)
 
@@ -39,14 +39,28 @@ The Python program [Link to Py Program](Python Visualization/Graphing.py) reads 
 
 ![System schematic](Images/systemScheme.png)
 
+![Block Diagram](Images/BlockDiagram.png)
+
 The schematic and block diagram above show how the hardware was connected and communicated with each other.
+
     - The VL53L1X ToF sensor waas connected to the MCU, over I2C.
+
     - The stepper motor and its driver (ULN2003) waas connected to the MCU via GPIO pins.
+
     - The Onboard buttons were connected by internal GPIO.
+
     - The MCU was connected to the PC over UART (USB) at 115200 baud.
 
 -------------------------------
 
 ## Results:
 
+Below are the results of the system scanning the shown hallway
 
+![Hallway](Scan_Results/room.png)
+
+![Front view](Scan_Results/frontView.png)
+
+![Top view](Scan_Results/topView.png)
+
+The blue points are valid readings, along with lines connecting the points and splices to provide a visually-pleasing model. The red points represent anomaly readings, correctly showing that the scanned hallway is met with another perpendicular hallway which the sensor could not read properly.
