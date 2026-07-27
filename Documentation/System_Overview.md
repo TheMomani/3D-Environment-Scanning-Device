@@ -41,4 +41,5 @@ Features:
 Characteristic Table:
 
 ![Characteristic Table](../Images/charTable.png)
+
 Above is a charactertic table, highlighting the specifications of the individual components used, as well as important specs of the system.
