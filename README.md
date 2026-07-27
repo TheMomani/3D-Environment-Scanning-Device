@@ -24,7 +24,7 @@ The distance data is collected from the sensor via I2C at 100kbps and then trans
 
 Initialises the system clock and sensor, then pulls onboard buttons to begin or end scanning. The stepper motor is rotated 360deg incrementially, with the ToF sensor taking the average of 5 distance measurements (between motor rotation increments). The MCU transmits the required data in CSV format to the PC via UART. A flowchart is shown below, since the full MCU firmware source code is not publicly displayed to avoid academic integrety policies.
 
-![C program flowchart](../3D-Environment-Scanning-Device/Images/mainCFlow.png)
+![C program flowchart](Images/mainCFlow.png)
 
 
 ### Python Visualization (PC):
